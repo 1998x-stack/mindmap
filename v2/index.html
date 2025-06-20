@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindFlow - Apple Style Mind Map</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script>var initSqlJs = sqlJs;</script>
+</head>
+<body>
+    <div class="glass toolbar">
+        <button id="add-child" class="toolbar-btn">
+            <span>+ Child</span>
+        </button>
+        <button id="add-sibling" class="toolbar-btn">
+            <span>+ Sibling</span>
+        </button>
+        <button id="save-map" class="toolbar-btn primary">
+            <span>Export</span>
+        </button>
+        <button id="load-map" class="toolbar-btn">
+            <span>Import</span>
+        </button>
+        <input type="file" id="file-input" accept=".json" hidden>
+    </div>
+    
+    <div class="canvas-container">
+        <svg id="connections" width="100%" height="100%"></svg>
+        <div id="mindmap" class="mindmap"></div>
+    </div>
+    
+    <div id="context-menu" class="glass context-menu">
+        <div class="menu-item" data-action="add-child">Add Child Node</div>
+        <div class="menu-item" data-action="add-sibling">Add Sibling Node</div>
+        <div class="menu-divider"></div>
+        <div class="menu-item" data-action="edit">Edit Text</div>
+        <div class="menu-item" data-action="delete">Delete Node</div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

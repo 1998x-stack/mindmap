@@ -10,5 +10,5 @@
 - Security/regression review: no new dependencies, external calls, permissions, workflows, deployment or data migrations; only hierarchy assignment changed.
 - Risk & rollback: existing exported data untouched; revert this PR to restore prior hierarchy behavior. Browser interactions and persistence need manual verification.
 - Follow-up: investigate import/localStorage parentId and idCounter integrity with persistence tests.
-- Implementation commit SHA: pending
-- PR URL: pending
+- Implementation commit SHA: e92f509f6e27d7bfebbe72a05ee48db68ca34964
+- PR URL: https://github.com/1998x-stack/mindmap/pull/1

@@ -230,7 +230,13 @@ class MindMap {
         }
         
         const node = this.createNode("New Node", x, y);
-        node.dataset.parentId = this.selectedNode.dataset.id;
+        // A sibling shares its selected node's parent; a child belongs to the selected node.
+        const parentId = type === 'sibling'
+            ? this.selectedNode.dataset.parentId
+            : this.selectedNode.dataset.id;
+        if (parentId) {
+            node.dataset.parentId = parentId;
+        }
         this.nodes.push(node);
         this.selectNode(node);
         this.saveNodesToDB();

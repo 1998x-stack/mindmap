@@ -1,0 +1,14 @@
+### 2026-11-09 15:04 UTC — ChatGPT Portfolio Iteration
+- Run ID: 20261109T1504Z-mindmap-sibling
+- Target repository / original base SHA: 1998x-stack/mindmap / 97368f4dcb011b492ac225855bf63ad895fdad8f
+- History: docs/improvements.md confirmed absent (GitHub 404); first initialization. No existing PRs.
+- Product problem: Add Sibling to a child incorrectly nests a new child under that node instead of sharing its parent; Add Sibling on the root also incorrectly nests a child.
+- Engineering diagnosis: v2/script.js MindMap.addNode() unconditionally assigns selectedNode.dataset.id as parentId for both actions.
+- Candidate scores (benefit + correctness + evidence + verification - cost - risk): sibling hierarchy 4+4+5+5-1-1=16; localStorage parent restoration 4+4+5+3-2-3=11; imported IDs/counter collision 4+4+5+2-3-4=8. Selected minimal low-risk hierarchy fix.
+- Changes: v2/script.js now inherits the selected parent for sibling nodes, leaves root siblings parentless, and preserves child behavior. tests/v2-node-hierarchy.test.cjs adds four regression cases.
+- Validation: A: in-tool JavaScript execution against actual GitHub source demonstrated two failures before and three relevant passes after. D: repository Node test file written but not yet run in a local Node process. Browser E2E unavailable; CI unknown.
+- Security/regression review: no new dependencies, external calls, permissions, workflows, deployment or data migrations; only hierarchy assignment changed.
+- Risk & rollback: existing exported data untouched; revert this PR to restore prior hierarchy behavior. Browser interactions and persistence need manual verification.
+- Follow-up: investigate import/localStorage parentId and idCounter integrity with persistence tests.
+- Implementation commit SHA: e92f509f6e27d7bfebbe72a05ee48db68ca34964
+- PR URL: https://github.com/1998x-stack/mindmap/pull/1
